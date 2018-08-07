@@ -801,3 +801,26 @@ spring:
 
 ## 1.8 SpringBoot配置文件的加载位置
 
+### 1.8.1 配置文件加载位置及优先级
+
+SpringBoot 启动会**扫描以下位置**的application.properties或者application.yml文件作为SpringBoot的默认配置文件
+
+–file:./config/		当前项目根目录下的config目录中
+
+–file:./			当前项目根目录下
+
+–classpath:/config/	类路径下的config目录中
+
+–classpath:/			类路径根目录中（即创建项目时默认的resources目录中）
+
+**优先级由高到底，高优先级的配置会覆盖低优先级的配置**；
+
+**互补配置** ，即所有位置的文件都会被加载，高优先 级配置内容会覆盖低优先级配置内容。    
+
+### 1.8.2 修改默认配置文件的加载位置
+
+我们还可以通过**spring.config.location**来**改变默认的配置文件位置**
+
+项目**打包好以后**，我们可以**使用命令行参数的形式**，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成**互补配置**；
+
+java -jar springboot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G:/application.properties
